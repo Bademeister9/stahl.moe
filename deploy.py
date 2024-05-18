@@ -5,7 +5,9 @@ from typing import List, Tuple
 current_dir: str = os.getcwd()
 sync_dir: List[str] = ["./etc/nginx"]  # dirs to symbolic link them
 
+
 def get_files(path: str) -> Tuple[List[str], List[str]]:
+    # get all files contained in syncdir and sub
     root_files: List[str] = []
     sync_files: List[str] = []
     for root, dirs, files in os.walk(path):
