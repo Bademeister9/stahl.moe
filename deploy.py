@@ -11,7 +11,7 @@ def get_files(path: str) -> Tuple[List[str], List[str]]:
     for root, dirs, files in os.walk(path):
         for f in files:
             relative_path = os.path.relpath(os.path.join(root, f), start=current_dir)
-            root_files.append(os.path.join(path[1:], relative_path))
+            root_files.append(os.path.join("/", relative_path))
             sync_files.append(relative_path)
     return root_files, sync_files
 
