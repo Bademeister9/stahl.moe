@@ -17,8 +17,13 @@ def get_files(path: str) -> Tuple[List[str], List[str]]:
 
 def ln_conf(file_in: str, file_out: str) -> subprocess.Popen:
     command: str = f"sudo ln {file_in} {file_out}"
-    pr: subprocess.Popen = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    return pr
+    process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = process.communicate()
+    if process.returncode == 0:
+        print(f"sync file {file_in} -> {file_out}")
+    else:
+        print(f"error sync file {file_in} -> {file_out}")
+        print(stderr.decode())
 
 
 def deploy() -> None:
@@ -26,6 +31,7 @@ def deploy() -> None:
         i = 0
         root_files, sync_files = get_files(path)
         for s_files in sync_files:
+            print(sync_files[i], root_files[i])
             ln_conf(sync_files[i], root_files[i])
             i += 1
 
