@@ -32,7 +32,7 @@ def deploy() -> None:
         root_files, sync_files = get_files(path)
         for s_files in sync_files:
             print(sync_files[i], root_files[i])
-            ln_conf(root_files[i], sync_files[i])
+            ln_conf(sync_files[i], root_files[i])
             i += 1
 
 deploy()
