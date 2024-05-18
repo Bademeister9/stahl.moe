@@ -1,0 +1,22 @@
+server {
+    listen 443 ssl;
+    server_name stahl.moe;
+
+    ssl_certificate_key /etc/ssl/private/stahl.moe.key;
+    ssl_certificate /etc/ssl/certs/stahl.moe.pem;
+
+    root /var/www/default;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    location ~ \.php$ {
+     include snippets/fastcgi-php.conf;
+    fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+  }
+
+  location ~ /\.ht {
+    deny all;
+  }
+}
