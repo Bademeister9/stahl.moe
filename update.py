@@ -26,5 +26,5 @@ def pull_update():
 
 
 def update():
-    pull_update()
+    pull_update()# test
     restart_service("nginx")
