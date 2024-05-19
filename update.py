@@ -10,4 +10,21 @@ def restart_service(service_name):
         print(f"Fehler beim Neustarten des Service {service_name}:")
         print(stderr.decode())
 
-restart_service("nginx")
+
+def pull_update():
+    try:
+        result = subprocess.run(["git", "pull"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        if result.returncode == 0:
+            print(f"Pulled update to {result.stdout.decode()}")
+        else:
+            print(f"Failed to  pull update from {result.stderr.decode()}")
+            print(result.stderr.decode())
+    except subprocess.CalledProcessError as e:
+        print(f"Failed to pull update from {e.stderr.decode()}")
+        print(e.stderr.decode())
+
+
+
+def update():
+    pull_update()
+    restart_service("nginx")
