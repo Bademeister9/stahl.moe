@@ -12,3 +12,6 @@ def destroy():
         else:
             print("Successfully removed {} files.".format(root_files))
             return True
+
+
+destroy()
