@@ -3,7 +3,7 @@ import subprocess
 
 def destroy():
     for path in sync_dir:
-        root_files = get_files(path)
+        root_files, sync_files = get_files(path)
         print("Destroying {} files...".format(root_files))
         pr = subprocess.run(['rm', root_files])
         if pr.returncode != 0:
