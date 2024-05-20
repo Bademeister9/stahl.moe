@@ -3,7 +3,8 @@ import subprocess
 from typing import List, Tuple
 
 current_dir: str = os.getcwd()
-sync_dir: List[str] = ["./etc/nginx"]  # dirs to symbolic link them
+sync_dir: List[str] = ["./etc/nginx"]  # dirs to symbolic link each file gets its own ln
+
 
 
 def get_files(path: str) -> Tuple[List[str], List[str]]:
